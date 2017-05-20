@@ -18,8 +18,8 @@ public class CustomerController {
 	@PostMapping("/customer")
 	public String salvar(Customer customer) {
 		System.out.println("Your Message : " + "aaaaaaaaaaaaaaaaaaaaaaaaaoooooooooooooooooooooooooooo");
-		//customers.save(customer);
-		return "foi";
+		customers.save(customer);
+		return "xx";
 	}
 	
 	@GetMapping("/customer")
