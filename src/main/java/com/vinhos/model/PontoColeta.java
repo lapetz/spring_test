@@ -1,13 +1,14 @@
 package com.vinhos.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Valores {
+@Table(name = "valor_coletado")
+public class PontoColeta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,16 @@ public class Valores {
 	private String ieIncendio;
 
 	private String dsGeoLocalizacao;
+	
+	/*public PontoColeta(Integer vlTemperatura, Integer vlPh, Integer umidadeSolo, Integer umidadeAr, 
+			String ieIncendio, String dsGeoLocalizacao) {
+		this.vlTemperatura = vlTemperatura;
+		this.vlPh = vlPh;
+		this.umidadeSolo = umidadeSolo;
+		this.umidadeAr = umidadeAr;
+		this.ieIncendio = ieIncendio;
+		this.dsGeoLocalizacao = dsGeoLocalizacao;
+	}*/
 
 	public long getId() {
 		return id;
