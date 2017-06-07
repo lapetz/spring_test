@@ -18,22 +18,31 @@
 
 
 <div id="container"></div>
+	 	<table>
+   	 		<tr th:each="imovel : ${list}">
+   	 			<td th:text="${imovel.vlTemperatura}"></td>
+   	 			<td th:text="${imovel.vlPh}"></td>
+   	 		</tr>
+   	 	</table>
 
-<script>
+<script th:inline="javascript">
+
+var phValues = [[${list}]];
+alert(phValues);
 
 Highcharts.chart('container', {
 
     title: {
-        text: 'Solar Employment Growth by Sector, 2010-2016'
+        text: 'Média diária dos dados coletados'
     },
 
     subtitle: {
-        text: 'Source: thesolarfoundation.com'
+        text: 'Fonte: NodeMCU'
     },
 
     yAxis: {
         title: {
-            text: 'Number of Employees'
+            text: 'Valores'
         }
     },
     legend: {
