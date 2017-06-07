@@ -1,4 +1,4 @@
-package com.vinhos.model;
+package com.vinhos.controller.toexclude;
 
 import java.math.BigDecimal;
 

@@ -1,5 +1,8 @@
 package com.vinhos.model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +29,8 @@ public class PontoColeta {
 
 	private String dsGeoLocalizacao;
 	
+	private Timestamp dtAtualizacao;
+	
 	/*public PontoColeta(Integer vlTemperatura, Integer vlPh, Integer umidadeSolo, Integer umidadeAr, 
 			String ieIncendio, String dsGeoLocalizacao) {
 		this.vlTemperatura = vlTemperatura;
@@ -35,6 +40,14 @@ public class PontoColeta {
 		this.ieIncendio = ieIncendio;
 		this.dsGeoLocalizacao = dsGeoLocalizacao;
 	}*/
+
+	public Timestamp getDtAtualizacao() {
+		return dtAtualizacao;
+	}
+
+	public void setDtAtualizacao(Timestamp dtAtualizacao) {
+		this.dtAtualizacao = dtAtualizacao;
+	}
 
 	public long getId() {
 		return id;
