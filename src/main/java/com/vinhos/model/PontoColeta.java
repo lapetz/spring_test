@@ -30,16 +30,6 @@ public class PontoColeta {
 	private String dsGeoLocalizacao;
 	
 	private Timestamp dtAtualizacao;
-	
-	/*public PontoColeta(Integer vlTemperatura, Integer vlPh, Integer umidadeSolo, Integer umidadeAr, 
-			String ieIncendio, String dsGeoLocalizacao) {
-		this.vlTemperatura = vlTemperatura;
-		this.vlPh = vlPh;
-		this.umidadeSolo = umidadeSolo;
-		this.umidadeAr = umidadeAr;
-		this.ieIncendio = ieIncendio;
-		this.dsGeoLocalizacao = dsGeoLocalizacao;
-	}*/
 
 	public Timestamp getDtAtualizacao() {
 		return dtAtualizacao;

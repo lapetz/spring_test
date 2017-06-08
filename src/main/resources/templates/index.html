@@ -24,11 +24,33 @@
    	 			<td th:text="${imovel.vlPh}"></td>
    	 		</tr>
    	 	</table>
+   	 	
+   	 	<table>
+   	 		<tr>
+   	 			<td th:text="${mediaDia}"></td>
+   	 			<td th:text="${mediaDia1}"></td>
+   	 			<td th:text="${mediaDia2}"></td>
+   	 			<td th:text="${mediaDia3}"></td>
+   	 			<td th:text="${mediaDia4}"></td>
+   	 			<td th:text="${mediaDia5}"></td>
+   	 			<td th:text="${mediaDia6}"></td>
+   	 		</tr>
+   	 	</table>
 
 <script th:inline="javascript">
 
-var phValues = [[${list}]];
-alert(phValues);
+var list = [[${list}]];
+var mediaDia = [[${media0}]];
+var mediaDia1 = [[${media1}]]; // 1 dia atrás
+var mediaDia2 = [[${media2}]]; // 2 dias atrás
+var mediaDia3 = [[${media3}]]; // 3 dias atrás
+var mediaDia4 = [[${media4}]]; // 4 dias atrás
+var mediaDia5 = [[${media5}]]; // 5 dias atrás
+var mediaDia6 = [[${media6}]]; // 6 dias atrás
+
+list.forEach(function(entry) {
+    console.log(entry);
+});
 
 Highcharts.chart('container', {
 
@@ -53,26 +75,42 @@ Highcharts.chart('container', {
 
     plotOptions: {
         series: {
-            pointStart: 2010
+            pointStart: 50
         }
     },
 
     series: [{
         name: 'pH',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175],
+		pointInterval: 24 * 3600 * 1000,
+		pointStart: Date.UTC(2015, 2, 1)
     }, {
         name: 'Temperatura',
-        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+        data: [mediaDia[0] ? mediaDia[0].vlTemperatura : mediaDia[0], 
+        		mediaDia1[0] ? mediaDia1[0].vlTemperatura : mediaDia1[0],
+        		mediaDia2[0] ? mediaDia2[0].vlTemperatura : mediaDia2[0],
+        		mediaDia3[0] ? mediaDia3[0].vlTemperatura : mediaDia3[0],
+        		mediaDia4[0] ? mediaDia4[0].vlTemperatura : mediaDia4[0],
+        		mediaDia5[0] ? mediaDia5[0].vlTemperatura : mediaDia5[0],
+        		mediaDia6[0] ? mediaDia6[0].vlTemperatura : mediaDia6[0]],
+        		pointInterval: 24 * 3600 * 1000,
+        		pointStart: Date.UTC(2015, 2, 1)
     }, {
         name: 'Umidade do Ar',
-        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
+		pointInterval: 24 * 3600 * 1000,
+		pointStart: Date.UTC(2015, 2, 1)
     }, {
         name: 'Umidade do Solo',
-        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+        data: [1254, 8484, 7988, 12169, 15112, 22452, 34400, 34227],
+		pointInterval: 24 * 3600 * 1000,
+		pointStart: Date.UTC(2015, 2, 1)
     }, {
 
         name: 'Alerta de incêndio',
-        data: [0, 0, 0, 0, 0, 11816, 18274, 18111]
+        data: [0, 0, 0, 0, 0, 11816, 18274, 18111],
+		pointInterval: 24 * 3600 * 1000,
+		pointStart: Date.UTC(2015, 2, 1)
     }]
 
 });
