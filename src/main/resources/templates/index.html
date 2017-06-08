@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>	
+
 <title>Dados da cultura</title>
 
 </head>
@@ -18,12 +19,6 @@
 
 
 <div id="container"></div>
-	 	<table>
-   	 		<tr th:each="imovel : ${list}">
-   	 			<td th:text="${imovel.vlTemperatura}"></td>
-   	 			<td th:text="${imovel.vlPh}"></td>
-   	 		</tr>
-   	 	</table>
    	 	
    	 	<table>
    	 		<tr>
@@ -37,6 +32,14 @@
    	 		</tr>
    	 	</table>
 
+<div id="floating-panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="changeGradient()">Change gradient</button>
+      <button onclick="changeRadius()">Change radius</button>
+      <button onclick="changeOpacity()">Change opacity</button>
+</div>
+<div id="map"></div>
+    
 <script th:inline="javascript">
 
 var list = [[${list}]];
@@ -61,6 +64,10 @@ Highcharts.chart('container', {
     subtitle: {
         text: 'Fonte: NodeMCU'
     },
+    xAxis: {  
+        tickInterval:  1,
+        type: 'day'
+    },
 
     yAxis: {
         title: {
@@ -75,15 +82,20 @@ Highcharts.chart('container', {
 
     plotOptions: {
         series: {
-            pointStart: 50
+            pointStart: 7,
+            pointInterval: 1
         }
     },
 
     series: [{
         name: 'pH',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175],
-		pointInterval: 24 * 3600 * 1000,
-		pointStart: Date.UTC(2015, 2, 1)
+        data: [mediaDia[0] ? mediaDia[0].vlPh : mediaDia[0], 
+        		mediaDia1[0] ? mediaDia1[0].vlPh : mediaDia1[0],
+            	mediaDia2[0] ? mediaDia2[0].vlPh : mediaDia2[0],
+            	mediaDia3[0] ? mediaDia3[0].vlPh : mediaDia3[0],
+            	mediaDia4[0] ? mediaDia4[0].vlPh : mediaDia4[0],
+            	mediaDia5[0] ? mediaDia5[0].vlPh : mediaDia5[0],
+            	mediaDia6[0] ? mediaDia6[0].vlPh : mediaDia6[0]]
     }, {
         name: 'Temperatura',
         data: [mediaDia[0] ? mediaDia[0].vlTemperatura : mediaDia[0], 
@@ -92,29 +104,29 @@ Highcharts.chart('container', {
         		mediaDia3[0] ? mediaDia3[0].vlTemperatura : mediaDia3[0],
         		mediaDia4[0] ? mediaDia4[0].vlTemperatura : mediaDia4[0],
         		mediaDia5[0] ? mediaDia5[0].vlTemperatura : mediaDia5[0],
-        		mediaDia6[0] ? mediaDia6[0].vlTemperatura : mediaDia6[0]],
-        		pointInterval: 24 * 3600 * 1000,
-        		pointStart: Date.UTC(2015, 2, 1)
+        		mediaDia6[0] ? mediaDia6[0].vlTemperatura : mediaDia6[0]]
     }, {
         name: 'Umidade do Ar',
-        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
-		pointInterval: 24 * 3600 * 1000,
-		pointStart: Date.UTC(2015, 2, 1)
+        data: [mediaDia[0] ? mediaDia[0].umidadeAr : mediaDia[0], 
+        		mediaDia1[0] ? mediaDia1[0].umidadeAr : mediaDia1[0],
+                mediaDia2[0] ? mediaDia2[0].umidadeAr : mediaDia2[0],
+		    	mediaDia3[0] ? mediaDia3[0].umidadeAr : mediaDia3[0],
+            	mediaDia4[0] ? mediaDia4[0].umidadeAr : mediaDia4[0],
+				mediaDia5[0] ? mediaDia5[0].umidadeAr : mediaDia5[0],
+		    	mediaDia6[0] ? mediaDia6[0].umidadeAr : mediaDia6[0]]
     }, {
         name: 'Umidade do Solo',
-        data: [1254, 8484, 7988, 12169, 15112, 22452, 34400, 34227],
-		pointInterval: 24 * 3600 * 1000,
-		pointStart: Date.UTC(2015, 2, 1)
-    }, {
-
-        name: 'Alerta de incêndio',
-        data: [0, 0, 0, 0, 0, 11816, 18274, 18111],
-		pointInterval: 24 * 3600 * 1000,
-		pointStart: Date.UTC(2015, 2, 1)
+        data: [mediaDia[0] ? mediaDia[0].umidadeSolo : mediaDia[0], 
+        		mediaDia1[0] ? mediaDia1[0].umidadeSolo : mediaDia1[0],
+				mediaDia2[0] ? mediaDia2[0].umidadeSolo : mediaDia2[0],
+		    	mediaDia3[0] ? mediaDia3[0].umidadeSolo : mediaDia3[0],
+            	mediaDia4[0] ? mediaDia4[0].umidadeSolo : mediaDia4[0],
+        		mediaDia5[0] ? mediaDia5[0].umidadeSolo : mediaDia5[0],
+      			mediaDia6[0] ? mediaDia6[0].umidadeSolo : mediaDia6[0]]
     }]
 
 });
-      
+    
     	
 </script>
 
