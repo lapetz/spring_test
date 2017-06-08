@@ -10,7 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>	
-
 <title>Dados da cultura</title>
 
 </head>
@@ -19,6 +18,12 @@
 
 
 <div id="container"></div>
+	 	<table>
+   	 		<tr th:each="imovel : ${list}">
+   	 			<td th:text="${imovel.vlTemperatura}"></td>
+   	 			<td th:text="${imovel.vlPh}"></td>
+   	 		</tr>
+   	 	</table>
    	 	
    	 	<table>
    	 		<tr>
@@ -32,14 +37,6 @@
    	 		</tr>
    	 	</table>
 
-<div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
-</div>
-<div id="map"></div>
-    
 <script th:inline="javascript">
 
 var list = [[${list}]];
@@ -126,7 +123,7 @@ Highcharts.chart('container', {
     }]
 
 });
-    
+      
     	
 </script>
 
